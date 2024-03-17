@@ -16,21 +16,24 @@ Before getting started, ensure you have the following prerequisites:
 **Setup Instructions**
 Follow the steps below to set up the WireGuard VPN solution:
 Part 1: AWS Infrastructure Setup with Terraform
-Clone this repository to your local machine:
-'''
-1) Git clone <repository-url>
-
-2) Navigate to the project directory:
-'''
+1. **Clone this repository to your local machine**:
+```
+Git clone <repository-url>
+```
+2. **Navigate to the project directory**:
+```
 cd wireguard-aws-terraform
+```
+3. **Open the variables.tf file and customize the Terraform variables according to your requirements. You can specify the AWS region, VPC CIDR block, and other parameters**.
 
-4) Open the variables.tf file and customize the Terraform variables according to your requirements. You can specify the AWS region, VPC CIDR block, and other parameters.
-
-5) Initialize Terraform:
-   '''terraform init'''
-6) Provision the AWS Infrastructure
-   '''
+4. **Initialize Terraform**:
+   ```
+   terraform init
+   ```
+5. **Provision the AWS Infrastructure**
+   ```
    terraform apply
+   ```
 Note down the public IP address of the WireGuard server instance provisioned in AWS. You'll need this to configure WireGuard on the engineer's laptop.
 
 Part 2: Engineer's Laptop Configuration
@@ -39,11 +42,21 @@ To configure WireGuard on the engineer's laptop, you will need to install WireGu
 
 1. **Install WireGuard**:
    - **Windows/Mac**: Download and install from [WireGuard's official site](https://www.wireguard.com/install/).
-   - **Linux**: Install WireGuard using your distribution's package manager, for example, `sudo apt install wireguard` on Debian/Ubuntu.
+   - **Linux**: Install WireGuard using your distribution's package manager, for example,
+     ```
+     sudo apt install wireguard
+     ```.
 
 2. **Configure WireGuard Client**:
-   - Generate client keys: `wg genkey | tee privatekey | wg pubkey > publickey`.
-   - Create a `wg0-client.conf` file with the following content, replacing placeholders with actual values:
+   - Generate client keys:
+     ```
+     wg genkey | tee privatekey | wg pubkey > publickey
+     ```
+   - Create a `wg0-client.conf`
+   ```
+   nano wg0-client.conf
+   ```
+   - Input in the file  the following content, replacing placeholders with actual values:
      ```
      [Interface]
      PrivateKey = <client-private-key>
@@ -71,6 +84,16 @@ To configure WireGuard on the engineer's laptop, you will need to install WireGu
    curl http://<private-ip-of-http-service>
    ```
 
+Cleanup
+After you're done testing, don't forget to clean up the resources to avoid incurring unnecessary costs.
+
+Destroy the AWS infrastructure:
+```
+terraform destroy
+```
+
+Conclusion
+You have successfully set up a WireGuard VPN server in AWS using Terraform and configured it on the engineer's laptop to securely access http services deployed in a private subnet. Feel free to explore further customization options and integrations as per your requirements.
 Remember, for real-world use, securely transfer the public keys between the server and clients, and manage configurations with care, especially regarding key handling and IP assignments. This setup is a basic example and might need adjustments based on specific requirements or constraints of your environment.
 
 
