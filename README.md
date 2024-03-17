@@ -4,14 +4,14 @@ This project demonstrates how to set up a WireGuard VPN server in an AWS environ
 
 # Prerequisites
 Before getting started, ensure you have the following prerequisites:
-•	An AWS account with appropriate permissions to create resources.
-•	Terraform installed on your local machine. You can download it from here https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli. 
-•	WireGuard installed on the engineer's laptop. Follow the installation instructions for your operating system here https://www.wireguard.com/install/.
+* An AWS account with appropriate permissions to create resources.
+* Terraform installed on your local machine. You can download it from here https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli. 
+* WireGuard installed on the engineer's laptop. Follow the installation instructions for your operating system here https://www.wireguard.com/install/.
 
 # Created Resources
-•	EC2 instance for WireGuard server, that is automatically configured with user-data.
-•	Server running http service (apache)
-•	WireGuard client (Engineer’s laptop)
+* EC2 instance for WireGuard server, that is automatically configured with user-data.
+* Server running http service (apache)
+* WireGuard client (Engineer’s laptop)
 
 **Setup Instructions**
 Follow the steps below to set up the WireGuard VPN solution:
