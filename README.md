@@ -29,7 +29,7 @@ cd wireguard-aws-terraform
 5) Initialize Terraform:
    '''
    terraform init
-   
+   '''
 6) Provision the AWS Infrastructure
    '''
    terraform apply
