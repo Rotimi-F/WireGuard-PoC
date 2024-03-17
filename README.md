@@ -27,9 +27,7 @@ cd wireguard-aws-terraform
 4) Open the variables.tf file and customize the Terraform variables according to your requirements. You can specify the AWS region, VPC CIDR block, and other parameters.
 
 5) Initialize Terraform:
-   '''
-   terraform init
-   '''
+   '''terraform init'''
 6) Provision the AWS Infrastructure
    '''
    terraform apply
