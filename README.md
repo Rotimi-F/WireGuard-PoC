@@ -34,5 +34,43 @@ cd wireguard-aws-terraform
 Note down the public IP address of the WireGuard server instance provisioned in AWS. You'll need this to configure WireGuard on the engineer's laptop.
 
 Part 2: Engineer's Laptop Configuration
-Install Wireguard on the Client either from
+
+To configure WireGuard on the engineer's laptop, you will need to install WireGuard. The installation steps vary based on the operating system. Below is a general guide:
+
+1. **Install WireGuard**:
+   - **Windows/Mac**: Download and install from [WireGuard's official site](https://www.wireguard.com/install/).
+   - **Linux**: Install WireGuard using your distribution's package manager, for example, `sudo apt install wireguard` on Debian/Ubuntu.
+
+2. **Configure WireGuard Client**:
+   - Generate client keys: `wg genkey | tee privatekey | wg pubkey > publickey`.
+   - Create a `wg0-client.conf` file with the following content, replacing placeholders with actual values:
+     ```
+     [Interface]
+     PrivateKey = <client-private-key>
+     Address = 10.0.3.2/24
+     
+     [Peer]
+     PublicKey = <server-public-key>
+     Endpoint = <server-public-ip>:51820
+     AllowedIPs = 10.0.0.0/16
+     PersistentKeepalive = 25
+     ```
+   - The `AllowedIPs = 10.0.0.0/16` line directs all traffic for the VPC through the VPN. Adjust this as necessary for your network configuration.
+
+3. **Start WireGuard**:
+   - Activate the configuration: `wg-quick up wg0-client.conf` (you might need to specify the full path to the config file).
+     ```
+     sudo wg-quick up wg0
+     ```
+4. **Verify WireGuard Tunnel**
+   ```
+   sudo wg show
+   ```
+5. **Test the connection to ensure you can reach your services in the private subnet**:
+   ```
+   curl http://<private-ip-of-http-service>
+   ```
+
+Remember, for real-world use, securely transfer the public keys between the server and clients, and manage configurations with care, especially regarding key handling and IP assignments. This setup is a basic example and might need adjustments based on specific requirements or constraints of your environment.
+
 
