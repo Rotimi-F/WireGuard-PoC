@@ -84,7 +84,7 @@ resource "aws_instance" "wireguard_server" {
               #Add peers below
               [Peer]
               PublicKey = "client_public_key_here"
-              AllowedIPs = 10.0.3.0/24
+              AllowedIPs = 10.0.2.0/24 (Subnet of Private Instance)
               Endpoint = "client_public_ip_here:51820"
               
               EOF1
