@@ -70,14 +70,11 @@ resource "aws_instance" "wireguard_server" {
               #!/bin/bash
               sudo add-apt-repository -y ppa:wireguard/wireguard
               sudo apt update
-              sudo apt install -y wireguard
-              sudo add-apt-repository -y ppa:wireguard/wireguard
-              sudo apt update
               sudo apt install -y wireguard-go
               sudo apt-get install wireguard-tools
               sudo mkdir -p /etc/wireguard
               sudo wg genkey | sudo tee etc/wireguard/privatekey | sudo wg pubkey | sudo tee /etc/wireguard/publickey
-              sudo tee /etc/wireguard/wg0.conf <<EOF1
+              sudo tee /etc/wireguard/wg0systemctl.conf <<EOF1
               [Interface]
               Address = 10.0.1.10/24  # Adjust IP address and subnet mask as needed
               ListenPort = 51820       # Adjust the port if needed
@@ -92,11 +89,10 @@ resource "aws_instance" "wireguard_server" {
               
               EOF1
               sudo wg-quick up wg0
-              sudo systemctl enable wg-quick@wg0
-              sudo systemctl start wg-quick@wg0
+              sudo systemctl enable wg-quick@wg0systemctl.service
+              sudo systemctl start wg-quick@wg0systemctl.service
               # Configure WireGuard here
               EOF
-
 
   // Additional configuration for WireGuard server instance
   // (Install WireGuard, configure interfaces, IP addresses, routing)
