@@ -45,7 +45,7 @@ To configure WireGuard on the engineer's laptop, you will need to install WireGu
    - **Linux**: Install WireGuard using your distribution's package manager, for example,
      ```
      sudo apt install wireguard
-     ```.
+     ```
 
 2. **Configure WireGuard Client**:
    - Generate client keys:
