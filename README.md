@@ -18,7 +18,7 @@ Follow the steps below to set up the WireGuard VPN solution:
 Part 1: AWS Infrastructure Setup with Terraform
 1. **Clone this repository to your local machine**:
 ```
-Git clone https://github.com/Rotimi-F/WireGuard-PoC/tree/main
+Git clone https://github.com/Rotimi-F/WireGuard-PoC.git
 ```
 2. **Navigate to the project directory**:
 ```
