@@ -22,7 +22,7 @@ Git clone https://github.com/Rotimi-F/WireGuard-PoC.git
 ```
 2. **Navigate to the project directory**:
 ```
-cd wireguard-aws-terraform
+cd /WireGuard-PoC
 ```
 3. **Open the variables.tf file and customize the Terraform variables according to your requirements. You can specify the AWS region, VPC CIDR block, and other parameters**.
 
